@@ -1,34 +1,123 @@
-<div class="ear"></div>
-        <div class="ear right"></div>
-    </div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trái tim chuyển động</title>
 
-    <div class="face">
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-        <div class="blush left"></div>
-        <div class="blush right"></div>
-        <div class="nose"></div>
-        <div class="mouth"></div>
-    </div>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <h1>Thỏ yêu bạn 🐰💕</h1>
-</div>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #160b2d, #481044, #150b26);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
 
-<script>
-function makeHeart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.textContent = Math.random() > 0.5 ? "💕" : "💗";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.fontSize = (18 + Math.random() * 20) + "px";
-    h.style.animationDuration = (4 + Math.random() * 3) + "s";
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
 
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 7000);
-}
+    h1 {
+      font-size: clamp(24px, 6vw, 38px);
+      color: #ffb6d9;
+      text-shadow: 0 0 15px #ff3c9d;
+    }
 
-setInterval(makeHeart, 350);
-</script>
+    .heart {
+      font-size: clamp(130px, 35vw, 220px);
+      line-height: 1.2;
+      display: inline-block;
+      animation: heartbeat 1s infinite;
+      filter: drop-shadow(0 0 20px #ff176b);
+    }
 
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.18); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.12); }
+      60% { transform: scale(1); }
+    }
+
+    p {
+      font-size: 19px;
+      color: #ffe0ef;
+    }
+
+    .small-heart {
+      position: fixed;
+      bottom: -40px;
+      animation: fly 5s linear forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fly {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    button {
+      border: none;
+      border-radius: 25px;
+      padding: 12px 22px;
+      margin-top: 12px;
+      background: #ff4d9d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4d9d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>💖 Trái Tim Yêu Thương 💖</h1>
+    <div class="heart">❤️</div>
+    <p>Mong bạn luôn vui vẻ và hạnh phúc! ✨</p>
+    <button onclick="makeHearts()">Thêm trái tim 💕</button>
+  </div>
+
+  <script>
+    function makeHearts() {
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement("div");
+        heart.className = "small-heart";
+        heart.textContent = ["💗", "💖", "💕", "❤️", "💘"][
+          Math.floor(Math.random() * 5)
+        ];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (18 + Math.random() * 25) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        heart.addEventListener("animationend", () => {
+          heart.remove();
+        });
+      }
+    }
+
+    setInterval(makeHearts, 900);
+  </script>
 </body>
 </html>
