@@ -1,0 +1,30 @@
+<button onclick="createHearts()">
+      Thả thêm trái tim 💕
+    </button>
+  </div>
+
+  <script>
+    function createHearts() {
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.className = "particle";
+        heart.textContent = ["💗", "💖", "💕", "❤️"][
+          Math.floor(Math.random() * 4)
+        ];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (18 + Math.random() * 25) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        heart.addEventListener("animationend", () => {
+          heart.remove();
+        });
+      }
+    }
+
+    setInterval(createHearts, 1200);
+  </script>
+</body>
+</html>
